@@ -2,9 +2,11 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import React, { useState } from "react";
-import AboutMe from "./components/AboutMe";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
+import Ingredients from "./components/Ingredients";
+import Meals from "./components/Meals";
+import Recipes from "./components/Recipes";
+import GroceryList from "./components/GroceryList";
+import OtherIdeas from "./components/OtherIdeas";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -18,9 +20,11 @@ function App() {
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </div>
       <div className="App-content">
-        <AboutMe />
-        <Skills />
-        <Projects />
+        <Ingredients />
+        <Meals />
+        <Recipes />
+        <GroceryList />
+        <OtherIdeas />
       </div>
       <div className="App-footer">
         <Footer />

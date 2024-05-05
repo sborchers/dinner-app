@@ -5,14 +5,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-type ProjectCardProps = {
+type RecipeCardProps = {
   title: string;
   copy: string;
   source: string;
   href: string;
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+const RecipeCard: React.FC<RecipeCardProps> = ({
   title,
   copy,
   source,
@@ -35,4 +35,4 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-export default ProjectCard;
+export default RecipeCard;

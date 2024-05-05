@@ -5,67 +5,67 @@ import ias from "../../images/ias.jpg";
 import slt from "../../images/slt.jpg";
 import mpk22 from "../../images/mpk22.jpg";
 import motherSon from "../../images/mother-son.jpg";
-import ProjectCard from "./project-card";
+import RecipeCard from "./recipe-card";
 import styled from "styled-components";
 import garage from "../../images/g5Garage.jpg";
 import lmc from "../../images/lmc.jpg";
 
-function BuiltProjects() {
+function Recipes() {
   return (
     <ProjectsContainer>
-      <ProjectCard
+      <RecipeCard
         title="MFAH"
         copy="Museum"
         source={mfah}
         href="https://www.nordenson.com/projects/museum-of-fine-arts-houston-and-glassell-school-of-art"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="IAS"
         copy="Academic Building"
         source={ias}
         href="https://www.ias.edu/default/tags/rubenstein-commons"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="Day's End"
         copy="Sculpture"
         source={daysEnd}
         href="https://www.nordenson.com/projects/days-end"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="John Palach Memorial"
         copy="Sculpture"
         source={motherSon}
         href="https://cooper.edu/architecture/news/memorial-jan-palach-designed-john-hejduk-unveiled-prague"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="LinkedIn Campus"
         copy="Office"
         source={lmc}
         href="https://forell.com/projects/developer-commercial-corp/linkedin-middlefield-campus/"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="Meta MPK22 Campus"
         copy="Office"
         source={mpk22}
         href="https://forell.com/projects/developer-commercial-corp/facebook-mpk-22/"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="Bay View Garage"
         copy="Parking Garage"
         source={garage}
         href="https://www.clarkpacific.com/project/bay-view-parking-structure/"
-      ></ProjectCard>
-      <ProjectCard
+      ></RecipeCard>
+      <RecipeCard
         title="SLT"
         copy="Historic Renovation"
         source={slt}
         href="https://www.deseret.com/2019/4/19/20671272/here-s-how-the-salt-lake-temple-s-base-isolation-system-will-protect-it-from-earthquakes/"
-      ></ProjectCard>
+      ></RecipeCard>
     </ProjectsContainer>
   );
 }
 
-export default BuiltProjects;
+export default Recipes;
 
 const ProjectsContainer = styled.div`
   display: grid;
