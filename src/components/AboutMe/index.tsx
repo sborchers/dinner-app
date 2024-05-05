@@ -1,10 +1,8 @@
-import { PageSection } from "../Navigation";
 import React from "react";
 
 function AboutMe() {
   return (
     <main
-      id={PageSection.About}
       style={{
         display: "flex",
         flexDirection: "column",

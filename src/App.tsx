@@ -1,5 +1,4 @@
 import "./App.css";
-import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import React, { useState } from "react";
@@ -22,9 +21,6 @@ function App() {
         <AboutMe />
         <Skills />
         <Projects />
-      </div>
-      <div className="App-nav">
-        <Navigation></Navigation>
       </div>
       <div className="App-footer">
         <Footer />

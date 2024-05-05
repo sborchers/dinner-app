@@ -14,11 +14,10 @@ import auth0 from "../../icons/skills/auth0.jpg";
 import gcp from "../../icons/skills/gcp.jpg";
 import html from "../../icons/skills/html.png";
 import css from "../../icons/skills/css.png";
-import { PageSection } from "../Navigation";
 
 function Skills() {
   return (
-    <div id={PageSection.Skills} style={{ marginTop: 30, paddingTop: 10 }}>
+    <div style={{ marginTop: 30, paddingTop: 10 }}>
       <h2>Skills</h2>
       <IconContainer>
         <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
