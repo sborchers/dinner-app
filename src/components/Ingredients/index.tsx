@@ -1,10 +1,16 @@
 import React, { useState, ChangeEvent } from "react";
 import { TextField, Button, Typography, Box, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
+import { generateContent, parseContent } from "services/api-service";
+
+import { useRecoilState } from "recoil";
+import { mealsState } from "state/meal-atoms";
+import styled from "styled-components";
 
 function Ingredients() {
   const [ingredientInput, setIngredientInput] = useState<string>("");
   const [ingredients, setIngredients] = useState<string[]>([]);
+  const [, setMealsState] = useRecoilState(mealsState);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setIngredientInput(event.target.value);
@@ -23,8 +29,19 @@ function Ingredients() {
     setIngredients(newIngredients);
   };
 
-  const handleGenerateIdeas = () => {
-    console.log("Generating ideas with ingredients:", ingredients);
+  const handleGenerateIdeas = async () => {
+    let prompt = "generate dinner ideas";
+    if (ingredients.length > 0) {
+      prompt +=
+        " including the following ingredients: " + ingredients.join(", ");
+    }
+    try {
+      const response = await generateContent(prompt);
+      const parsedMeals = parseContent(response);
+      setMealsState(parsedMeals);
+    } catch (error) {
+      console.error("Error generating ideas:", error);
+    }
   };
 
   return (
@@ -33,7 +50,8 @@ function Ingredients() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        paddingTop: 2,
+        gap: 3,
+        padding: 3,
       }}
     >
       <Typography variant="h4">Ingredients</Typography>
@@ -41,28 +59,45 @@ function Ingredients() {
         Input ingredients that you would like to make a meal with. You can also
         generate ideas without adding ingredients!
       </Typography>
-      <TextField
-        type="text"
-        value={ingredientInput}
-        onChange={handleInputChange}
-        label="Enter an ingredient"
-      />
-      <Button onClick={handleAddIngredient} variant="contained">
-        Add Ingredient
-      </Button>
-      {ingredients.map((ingredient, index) => (
-        <Box key={index} display="flex" alignItems="center">
-          <Typography>{ingredient}</Typography>
-          <IconButton onClick={() => handleRemoveIngredient(index)}>
-            <Delete />
-          </IconButton>
-        </Box>
-      ))}
-      <Button onClick={handleGenerateIdeas} variant="contained" color="primary">
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <TextField
+          size="small"
+          type="text"
+          value={ingredientInput}
+          onChange={handleInputChange}
+          label="Enter an ingredient"
+        />
+        <Button onClick={handleAddIngredient} variant="outlined">
+          Add Ingredient
+        </Button>
+      </Box>
+      <Button onClick={handleGenerateIdeas} variant="contained">
         Generate Ideas
       </Button>
+      <IngredientContainer>
+        {ingredients.map((ingredient, index) => (
+          <Box key={index} display="flex" alignItems="center" gap={1}>
+            <Typography>{ingredient}</Typography>
+            <IconButton
+              size="small"
+              onClick={() => handleRemoveIngredient(index)}
+            >
+              <Delete />
+            </IconButton>
+          </Box>
+        ))}
+      </IngredientContainer>
     </Box>
   );
 }
 
 export default Ingredients;
+
+const IngredientContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+`;

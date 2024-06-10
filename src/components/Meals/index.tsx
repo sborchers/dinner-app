@@ -1,43 +1,61 @@
 import React from "react";
 import styled from "styled-components";
-import react from "../../icons/skills/react.jpg";
-import angular from "../../icons/skills/angular.jpg";
-import ts from "../../icons/skills/ts.jpg";
+import { mealsState } from "state/meal-atoms";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
+import { useRecoilValue } from "recoil";
 function Meals() {
+  const meals = useRecoilValue(mealsState);
   return (
-    <div style={{ marginTop: 30, paddingTop: 10 }}>
-      <h2>Meals</h2>
-      <p>
-        Here are some ideas for what you can make for dinner. Select one of the
-        meals to generate recipes to use!
-      </p>
-      <IconContainer>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          <img src={react} alt="React" style={{ height: 60 }} />
-        </a>
-        <a href="https://angular.io" target="_blank" rel="noopener noreferrer">
-          <img src={angular} alt="Angular" style={{ height: 60 }} />
-        </a>
-        <a
-          href="https://www.typescriptlang.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={ts} alt="Typescript" style={{ height: 60 }} />
-        </a>
-      </IconContainer>
-    </div>
+    meals.length && (
+      <div style={{ marginTop: 30, paddingTop: 10 }}>
+        <h2>Meals</h2>
+        <p>
+          Here are some ideas for what you can make for dinner. Select one of
+          the meals to generate recipes to use!
+        </p>
+        <MealContainer>
+          {meals.map((meal, index) => (
+            <CardContainer variant="outlined" key={index}>
+              <CardActionArea
+                component="a"
+                target="_blank"
+                sx={{ height: "100%" }}
+              >
+                <CardContent>
+                  <Typography sx={{ textAlign: "left" }} variant="h6">
+                    {meal.title}
+                  </Typography>
+                  <Typography
+                    sx={{ mt: 1.5, textAlign: "left" }}
+                    variant="body2"
+                  >
+                    {meal.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </CardContainer>
+          ))}
+        </MealContainer>
+      </div>
+    )
   );
 }
 
 export default Meals;
 
-const IconContainer = styled.div`
+const MealContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 24px;
   justify-content: center;
-  gap: 46px;
-  max-width: 600px;
   margin: 0 auto;
+  max-width: calc(100vw - 48px);
+`;
+
+const CardContainer = styled(Card)`
+  max-width: 200px;
 `;
