@@ -24,20 +24,7 @@ const generateContent = async (prompt: string): Promise<string> => {
     // * **Tuna & Cheese Stuffed Shells:** Use jumbo pasta shells, filling them with a mixture of ricotta cheese, shredded mozzarella, canned tuna, and spinach. Top with marinara sauce and more cheese, and bake until bubbly.
     // * **Tuna & Cheese Pizza:** Use a pre-made pizza crust or make your own. Top with tomato sauce, canned tuna, cheese, and your favorite toppings like onions, peppers, and olives.
     // * **Tuna & Cheese Croquettes:** Combine canned tuna, cheese, breadcrumbs, and spices. Form into small balls, bread, and deep-fry or bake until golden brown. Serve with a dipping sauce.
-    // * **Tuna & Cheese Salad Wraps:** Mix canned tuna, cheese, chopped celery, onion, and your favorite dressing. Fill tortillas or lettuce wraps with the mixture.
-
-    // **Bonus:**
-
-    // * **Tuna & Cheese Macaroni and Cheese:** Add canned tuna to your favorite macaroni and cheese recipe for extra protein and flavor.
-
-    // **Tips:**
-
-    // * Use canned tuna in oil for richer flavor.
-    // * Experiment with different cheese varieties – cheddar, mozzarella, feta, ricotta, etc.
-    // * Add extra flavor with spices, herbs, and vegetables.
-    // * Serve with a side salad or steamed vegetables.
-
-    // Enjoy your delicious and cheesy tuna dinners!`;
+    // * **Tuna & Cheese Salad Wraps:** Mix canned tuna, cheese, chopped celery, onion, and your favorite dressing. Fill tortillas or lettuce wraps with the mixture.`;
     return text;
   } catch (error) {
     if (error instanceof Error) {
@@ -49,27 +36,4 @@ const generateContent = async (prompt: string): Promise<string> => {
   }
 };
 
-interface Meal {
-  title: string;
-  description: string;
-}
-
-function parseContent(input: string): Meal[] {
-  // Split the input text into lines
-  const lines = input.split("\n");
-  // Extract the titles and descriptions from the lines
-  const meals: Meal[] = [];
-  for (const line of lines) {
-    // Check if the line starts with '* **'
-    if (line.trim().startsWith("* **")) {
-      // Extract the title and description from the line
-      const [title, description] = line.trim().substring(4).split(":**");
-      const trimmedTitle = title.trim();
-      const trimmedDescription = description.trim();
-      meals.push({ title: trimmedTitle, description: trimmedDescription });
-    }
-  }
-  return meals;
-}
-
-export { generateContent, parseContent };
+export { generateContent };

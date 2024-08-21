@@ -1,11 +1,12 @@
 import React, { useState, ChangeEvent } from "react";
 import { TextField, Button, Typography, Box, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
-import { generateContent, parseContent } from "services/api-service";
+import { generateContent } from "services/api-service";
 
 import { useRecoilState } from "recoil";
 import { mealsState } from "state/meal-atoms";
 import styled from "styled-components";
+import { parseMeals } from "utils/apiHelpers";
 
 function Ingredients() {
   const [ingredientInput, setIngredientInput] = useState<string>("");
@@ -37,7 +38,7 @@ function Ingredients() {
     }
     try {
       const response = await generateContent(prompt);
-      const parsedMeals = parseContent(response);
+      const parsedMeals = parseMeals(response);
       setMealsState(parsedMeals);
     } catch (error) {
       console.error("Error generating ideas:", error);

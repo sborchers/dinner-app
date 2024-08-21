@@ -6,7 +6,7 @@ import styled from "styled-components";
 function Recipes() {
   return (
     <ProjectsContainer>
-      <RecipeCard title="MFAH" copy="Museum" source={mfah}></RecipeCard>
+      <RecipeCard title="title" copy="description" source={mfah}></RecipeCard>
     </ProjectsContainer>
   );
 }
